@@ -1,0 +1,61 @@
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: auto;
+}
+
+h2, .form-group, .form-btn {
+    margin-bottom: 20px;
+}
+
+.form-btn {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+}
+
+.form-btn:hover {
+    background: #444;
+}
+
+.refresh-btn {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.refresh-btn:hover {
+    background: #444;
+}
+
+.post {
+    border: 1px solid #cccccc;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.post-header {
+    overflow: auto;
+}
+
+.username {
+    float: left;
+    font-weight: bold;
+}
+
+.date-time {
+    float: right;
+}
+
+.success, .warning {
+    color: green;
+    font-weight: bold;
+}
+
+.warning {
+    color: red;
+}
