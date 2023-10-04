@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $storedPassword = $storedUser['password'];
 
         if (hash('sha256', $password) == $storedPassword) {
-            // Passwords match, do whatever needs to be done after successful login here
             $_SESSION['isnewuser'] = false;
             $_SESSION['username'] = $username;
             header("Location: feed.php");
