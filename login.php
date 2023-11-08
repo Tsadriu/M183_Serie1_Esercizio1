@@ -16,8 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $storedUser = $result->fetch_assoc();
         $storedPassword = $storedUser['password'];
+        $storedSalt = $storedUser['salt'];
+        $currentHashedPassword = hash('sha256', ($storedSalt . $password));
 
-        if (hash('sha256', $password) == $storedPassword) {
+        if ($storedPassword == $currentHashedPassword) {
             $_SESSION['isnewuser'] = false;
             $_SESSION['username'] = $username;
             header("Location: feed.php");

@@ -14,11 +14,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows == 0) {
-        $hashedPassword = hash('sha256', $password);
+        // Generate the salt
+        $salt = bin2hex(random_bytes(8));
+
+        $saltedPassword = $salt . $password;
+
+        $hashedPassword = hash('sha256', $saltedPassword);
         // Clean input to prevent sql injection
-        $statement = $connection->prepare("INSERT INTO users(userName, password, creationDateTime) VALUES (?, ?, ?)");
+        $statement = $connection->prepare("INSERT INTO users(userName, password, salt, creationDateTime) VALUES (?, ?, ?, ?)");
         $dateTime = date('Y-m-d H:i:s');
-        $statement->bind_param("sss", $username, $hashedPassword, $dateTime);
+        $statement->bind_param("ssss", $username, $hashedPassword, $salt, $dateTime);
         $statement->execute();
 
         // Start session for the user and redirect them to feed.php
